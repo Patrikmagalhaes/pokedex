@@ -3,15 +3,10 @@ import GlobalStyle from "./styles"
 import Title from "./components/Title"
 import { Container } from "./styles"
 import Search from "./Container/Search"
-import { useEffect } from "react"
+
 
 function Home() {
     const { name } = useParams()
-
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
-            .this((res: object) => res.J)
-    }, [])
 
     return (
 
@@ -28,3 +23,5 @@ function Home() {
 }
 
 export default Home
+
+

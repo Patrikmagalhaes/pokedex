@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Paragrafo from '../../components/Paragrafo'
 import Title from '../../components/Title'
 import { Link } from 'react-router-dom'
-import { SetStateAction, useRef, useState } from 'react'
+import { SetStateAction, useState } from 'react'
 
 
 
@@ -32,7 +32,7 @@ function Welcome() {
 
     const insertName = (e: { target: { value: SetStateAction<string> } }) => {
 
-        setName(e.target.value )
+        setName(e.target.value)
     }
 
     return (
