@@ -4,9 +4,6 @@ import Title from '../../components/Title'
 import { Link } from 'react-router-dom'
 import { SetStateAction, useState } from 'react'
 
-
-
-
 export const InputName = styled.input`
 padding:16px;
 width:60%;

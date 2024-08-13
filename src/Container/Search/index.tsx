@@ -1,14 +1,17 @@
 import { InputName } from "../Welcome"
-import { useState, useEffect, SetStateAction } from "react"
+import { useState, useEffect } from "react"
+
+interface Pokemon {
+    name: string;
+}
 
 function Search() {
-    const [pokemons, setPokemons] = useState([])
+    const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [name, setName] = useState('')
-
-
-    const insertName = (e: { target: { value: SetStateAction<string> } }) => {
-
+    const insertName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
+        filterItems(name)
+
     }
 
     useEffect(() => {
@@ -16,19 +19,22 @@ function Search() {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
             const data = await response.json();
             setPokemons(data.results)
-            console.log(data.results)
+
         }
         fetchApi()
     }, [])
 
-    function filterList(i: string) {
-if(pokemons != )
-        return pokemons.filter((e: string) => console.log(`${+ e.indexOf(i) > -1}`))
+    const filterItems = (query: string) => {
+        return pokemons.filter(
+            (el) => el.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+        )
     }
-    filterList('bulb')
+
+
+
     return (
         <>
-            <InputName value={name} onChange={insertName} />
+            <InputName type="text" value={name} onChange={insertName} />
         </>
     )
 }
