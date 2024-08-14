@@ -12,10 +12,13 @@ interface Pokemon {
 
 function Search() {
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
-    const [name, setName] = useState('')
+    const [namePokemon, setNamePokemon] = useState('')
     const [filterResult, setFilterResult] = useState<Pokemon[]>([])
-    const [renderURL, setRenderURL] = useState([])
+    const [renderURL, setRenderURL] = useState<Pokemon[]>([])
 
+    let arrayPokemon: Pokemon[] = []
+
+    //obtendo lista de pokemons [{nome} {url}] e setando em pokemons
     useEffect(() => {
         const fetchApi = async () => {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
@@ -24,45 +27,71 @@ function Search() {
 
         }
         fetchApi()
+
     }, [])
 
-
+    //obtem o valor filtrado e seta no estado filterResult
     const insertName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value)
-        const result = filterItems(name)
-        setFilterResult(result)
-        const [{ url }] = filterResult
-        console.log(url)
+        const inputValue = e.target.value
+        setNamePokemon(inputValue)
+
+        const result = filterItems(namePokemon)
+        let list = []
+
+        let i = 0
+        for (i = 0; i <= 9; i++) {
+            list.push(result[i])
+        }
+
+        setFilterResult(list)
 
     }
 
+    //filtra a lista do estado pokemons com base no valor digitado no input
     const filterItems = (query: string) => {
         return pokemons.filter(
-            (el) => el.name.indexOf(query.toLowerCase()) > -1
-        )
+            (el) => el.name.indexOf(query.toLowerCase()) > -1)
     }
 
     useEffect(() => {
-        const fetchApi = async () => {
-            const [{ url }] = filterResult
-            console.log(url)
-            const response = await fetch(`${url}`)
-            const data = await response.json()
-            const array= data.push(array)
-            setRenderURL([data].push(data) )
+        filterResult.map((urls) => {
+            const fetchApi = async () => {
+                const response = await fetch(`${urls.url}`)
+                const data = await response.json()
+                arrayPokemon.push(data)
+                setRenderURL(arrayPokemon)
 
-        }
+            }
+            fetchApi()
 
-        fetchApi()
-    })
+        })
 
+    }, [filterResult])
+    useEffect(() => {
+
+
+        setFilterResult([{
+            name: 'caterpie', url: 'https://pokeapi.co/api/v2/pokemon/10/',
+            sprites: "",
+            other: undefined,
+            showdown: "",
+            front_default: "",
+        }, {
+            name: 'squirtle', url: 'https://pokeapi.co/api/v2/pokemon/7/',
+            sprites: "",
+            other: undefined,
+            showdown: "",
+            front_default: ""
+        }])
+
+    }, [])
     return (
         <>
-            <InputName type="text" value={name} onChange={insertName} />
-            {renderURL.map((pokemon: Pokemon) =>
-                <li >
-                    {pokemon.name}
-                    <img style={{ width: '50px' }} src={pokemon.sprites.other.showdown.front_default} alt="" />
+            <InputName type="text" value={namePokemon} onChange={insertName} />
+            {renderURL.map((item) =>
+                <li key={item.id} >
+                    {item.name}
+                    <img style={{ width: '50px' }} src={item.sprites.other.showdown.front_default} />
                 </li>
             )}
         </>
