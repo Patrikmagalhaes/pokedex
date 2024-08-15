@@ -1,5 +1,6 @@
 import { InputName } from "../Welcome"
 import { useState, useEffect } from "react"
+import { Img, Item, Ul } from "./style";
 
 interface Pokemon {
     name: string;
@@ -24,7 +25,6 @@ function Search() {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
             const data = await response.json()
             setPokemons(data.results)
-
         }
         fetchApi()
 
@@ -39,12 +39,10 @@ function Search() {
         let list = []
 
         let i = 0
-        for (i = 0; i <= 9; i++) {
+        for (i = 0; i <= 20; i++) {
             list.push(result[i])
         }
-
         setFilterResult(list)
-
     }
 
     //filtra a lista do estado pokemons com base no valor digitado no input
@@ -60,13 +58,12 @@ function Search() {
                 const data = await response.json()
                 arrayPokemon.push(data)
                 setRenderURL(arrayPokemon)
-
             }
             fetchApi()
-
         })
 
     }, [filterResult])
+
     useEffect(() => {
 
 
@@ -88,12 +85,16 @@ function Search() {
     return (
         <>
             <InputName type="text" value={namePokemon} onChange={insertName} />
-            {renderURL.map((item) =>
-                <li key={item.id} >
-                    {item.name}
-                    <img style={{ width: '50px' }} src={item.sprites.other.showdown.front_default} />
-                </li>
-            )}
+            <Ul>
+                {renderURL.map((item) =>
+                    <Item key={item.id}>
+                        <Img src={item.sprites.other.showdown.front_default} />
+                        {item.name}
+                    </Item>
+
+                )}
+            </Ul>
+
         </>
     )
 }
