@@ -9,12 +9,17 @@ const GlobalStyle = createGlobalStyle`
     body{
     font-family: monospace, sans-serif;
     box-sizing: border-box;
-    
+    background-color: #ffefd5;
+   
     }
 
     a{
     text-decoration:none;
     color: black;}
+
+    li{
+    list-style:none;
+    }
 `
 
 export default GlobalStyle

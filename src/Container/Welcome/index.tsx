@@ -6,11 +6,11 @@ import { SetStateAction, useState } from 'react'
 
 export const InputName = styled.input`
   padding:16px;
-  width:60%;
+  width:50%;
   border: 2px solid
 `
 
-const Button = styled.button`
+export const Button = styled.button`
   font-family: "Pixelify Sans", sans-serif;
   width:80%;
   padding:16px;
@@ -19,26 +19,35 @@ const Button = styled.button`
   margin-top:24px;
   background-color:#EC2739;
   box-shadow: 2px  2px black;
+ 
+`
+export const BackButton = styled(Button)`
+font-size:16px;
+width:auto;
+padding:8px;
+margin:0;
 `
 
 function Welcome() {
-    const [name, setName] = useState('')
+  const [name, setName] = useState('')
 
-    const insertName = (e: { target: { value: SetStateAction<string> } }) => {
+  const insertName = (e: { target: { value: SetStateAction<string> } }) => {
 
-        setName(e.target.value)
-    }
+    setName(e.target.value)
+  }
 
-    return (
-        <>
-            <img className='img' src="../../public/images/picachu.png" alt="pikachu" />
-            <Title>Hello! My name is Pikachu!</Title>
-            <Paragrafo>Qual seu nome?</Paragrafo>
-            <InputName value={name} onChange={insertName} placeholder='Ex: Patrik' type='text' />
-            <Button><Link to={`/home/${name}`}>Start!</Link></Button>
+  return (
+    <>
+      <img className='img' src="../../public/images/picachu.png" alt="pikachu" />
+      <Title>Hello! My name is Pikachu!</Title>
+      <Paragrafo>Qual seu nome?</Paragrafo>
 
-        </>
-    )
+      <InputName value={name} onChange={insertName} placeholder='Ex: Patrik' type='text' required />
+      <Link to={`/home/${name}`} style={{ width: "80%", display: "flex", justifyContent: "center" }}><Button>Start!</Button></Link>
+
+
+    </>
+  )
 }
 
 export default Welcome
