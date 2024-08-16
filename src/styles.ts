@@ -20,12 +20,14 @@ const GlobalStyle = createGlobalStyle`
     li{
     list-style:none;
     }
+
+
 `
 
 export default GlobalStyle
 
 export const Container = styled.div`
-  max-width: 1024px;
+  max-width: 764pxpx;
   width: 100%;
   margin: 0 auto;
   display:flex;
@@ -41,5 +43,15 @@ export const Container = styled.div`
   width:100%
   }
 
+ @media (min-width:765px) {
+   max-width:600px;
+  }
+ @media (max-width:765px) {
+   max-width:400px;
+
+
+  }
+
+  
 
 `;

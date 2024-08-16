@@ -2,17 +2,24 @@ import styled from "styled-components";
 
 export const Ul = styled.ul`
 display:flex;
-width:50%;
 gap:10px;
 overflow-x:auto;
-border:1px solid black;
 padding:20px;
+width:100%;
 `
 export const Item = styled.li`
 display:flex;
 flex-direction:column;
 justify-content:end;
 align-items:center;
+border:1px solid black;
+padding:16px;
+box-shadow: 2px  2px black;
+min-width:25%
+@media (max-width: 600px) {
+   min-width: 100%;
+  }
+
 `
 export const Img = styled.img`
 width:100px;

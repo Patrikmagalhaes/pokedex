@@ -7,7 +7,7 @@ import { SetStateAction, useState } from 'react'
 export const InputName = styled.input`
   padding:16px;
   width:50%;
-  border: 2px solid
+  box-shadow: 2px  2px black;
 `
 
 export const Button = styled.button`
