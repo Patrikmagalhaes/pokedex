@@ -3,13 +3,14 @@ import { useState, useEffect } from "react"
 import { Img, Item, Name, Ul } from "./style";
 import { Link, useParams } from "react-router-dom";
 
-interface Pokemon {
+export type Pokemon = {
     name: string;
     url: string;
     sprites: string;
     other: undefined;
     showdown: string;
     front_default: string;
+    id:number;
 
 }
 
@@ -131,8 +132,6 @@ function Search() {
                             <Name>{item.name}</Name>
                         </Link>
                     </Item>
-
-
 
                 )}
             </Ul>
