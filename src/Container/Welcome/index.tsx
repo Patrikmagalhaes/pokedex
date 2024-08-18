@@ -58,7 +58,7 @@ function Welcome() {
   return (
     <Container>
       <Section>
-        <ImgWelcome className='img' src="../../public/images/picachu.png" alt="pikachu" />
+        <ImgWelcome className='img' src="/images/picachu.png" alt="pikachu" />
         <Title>Hello! My name is Pikachu!</Title>
         <Paragrafo>Qual seu nome?</Paragrafo>
 
