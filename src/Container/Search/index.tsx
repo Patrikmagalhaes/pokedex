@@ -3,17 +3,24 @@ import { useState, useEffect } from "react"
 import { Img, Item, Name, Ul } from "./style";
 import { Link, useParams } from "react-router-dom";
 
-export type Pokemon = {
+type Pokemon = {
     name: string;
     url: string;
-    sprites: string;
-    other: undefined;
-    showdown: string;
-    front_default: string;
+    sprites: Sprites;
+  
+
+
     id: number;
 
 }
 
+type Sprites = {
+    other: {
+        showdown: {
+            front_default: string;
+        }
+    }
+}
 function Search() {
     const { name } = useParams()
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
@@ -71,54 +78,15 @@ function Search() {
     useEffect(() => {
 
 
-        setFilterResult([{
-            name: 'caterpie', url: 'https://pokeapi.co/api/v2/pokemon/10/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: "",
-        }, {
-            name: 'squirtle', url: 'https://pokeapi.co/api/v2/pokemon/7/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: ""
-        },
-        {
-            name: ' beedrill', url: 'https://pokeapi.co/api/v2/pokemon/15/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: ""
-        },
-        {
-            name: 'caterpie', url: 'https://pokeapi.co/api/v2/pokemon/10/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: "",
-        },
-        {
-            name: ' beedrill', url: 'https://pokeapi.co/api/v2/pokemon/15/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: ""
-        },
-        {
-            name: 'squirtle', url: 'https://pokeapi.co/api/v2/pokemon/7/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: ""
-        },
-        {
-            name: 'caterpie', url: 'https://pokeapi.co/api/v2/pokemon/10/',
-            sprites: "",
-            other: undefined,
-            showdown: "",
-            front_default: "",
-        }])
+        setFilterResult([
+            
+            {
+                name: 'caterpie',
+                url: 'https://pokeapi.co/api/v2/pokemon/10/',
+                sprites: { other: { showdown: { front_default: '' } } },
+                id: 10
+            }
+      ])
 
     }
         , [])

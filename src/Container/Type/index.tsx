@@ -1,12 +1,9 @@
+import { Pokemon } from "../../Details";
 import { Box } from "./style";
 
+
 type Map = {
-    arrayPokemon: [];
-    idPokemon: number;
-    name: string;
-    sprites: string;
-    other: unknown;
-    types: [];
+    arrayPokemon: Pokemon[];
 }
 function Type({ arrayPokemon }: Map) {
 
@@ -14,12 +11,14 @@ function Type({ arrayPokemon }: Map) {
 
         <>
             <Box>
-                {arrayPokemon.map((item: Map) =>
+                {arrayPokemon.map((item) =>
 
+                   <>
                     <ul>
                        <h3>Tipo</h3>
                         <li>{item.types[0].type.name}</li>
                     </ul>
+                   </>
                 )}
             </Box>
         </>

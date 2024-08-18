@@ -1,28 +1,24 @@
+import { Pokemon } from "../../Details";
 import { Box } from "../Type/style";
 
-type Map = {
-    arrayPokemon: [];
-    idPokemon: number;
-    name: string;
-    sprites: string;
-    other: [],
-    weight:number
-}
 
-function Pounds({ arrayPokemon }: Map) {
+type ArrayProps = {
+    arrayPokemon: Pokemon[]
+}
+function Pounds({ arrayPokemon }: ArrayProps) {
 
     return (
 
         <>
-            {arrayPokemon.map((item: Map) =>
+            {arrayPokemon.map((item) =>
 
-                <Box>
-                 
-               <ul>
-                <h4>Peso</h4>
-                <p>KG: {parseInt(item.weight /  2.2)}</p>
-               </ul>
-                 
+                <Box key={item.weight}>
+
+                    <ul>
+                        <h4>Peso</h4>
+                        <p>KG: {(item.weight / 2.2).toFixed(2)}</p>
+                    </ul>
+
                 </Box>
             )}
         </>
