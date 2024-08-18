@@ -5,7 +5,7 @@ type Map = {
     idPokemon: number;
     name: string;
     sprites: string;
-    other:unknown
+    other:[]
 }
 function Avatar({ arrayPokemon }: Map) {
 

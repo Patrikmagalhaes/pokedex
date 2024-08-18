@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom"
-import GlobalStyle from "./styles"
+import GlobalStyle, { Section } from "./styles"
 import Title from "./components/Title"
 import { Container } from "./styles"
 import Search from "./Container/Search"
+import { Name } from "./Container/Search/style"
 
 
 function Home() {
@@ -11,10 +12,12 @@ function Home() {
     return (
 
         <Container>
-            <GlobalStyle />
-            <Title>Bem vindo(a) treinador(a) {name}! </Title>
-            <p>Qual Pokémon gostaria de estudar hoje?</p>
-            <Search />
+            <Section>
+                <GlobalStyle />
+                <Title>Bem vindo(a) treinador(a) <br/> <Name>{name}!</Name>  </Title>
+                <p>Qual Pokémon gostaria de estudar hoje?</p>
+                <Search />
+            </Section>
         </Container>
 
     )

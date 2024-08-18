@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import GlobalStyle, { Container } from "./styles"
+import GlobalStyle, { Container, Section } from "./styles"
 import Header from "./Container/Header"
 import Avatar from "./Container/Avatar"
 import Type from "./Container/Type"
 import Stats from "./Container/Stats"
+import Perfil from "./Container/Perfil"
+import Angles from "./Container/Angles"
+import Pounds from "./Container/Pounds"
 
 
 function Details() {
@@ -16,7 +19,7 @@ function Details() {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const data = await response.json()
             setPokemons([data])
-            console.log(data)
+          
         }
         fetchApi()
 
@@ -25,10 +28,14 @@ function Details() {
 
         <Container>
             <GlobalStyle />
-            <Header />
-            <Avatar arrayPokemon={pokemons} />
-            <Type arrayPokemon={pokemons} />
-            <Stats arrayPokemon={pokemons} />
+            <Section>
+                <Header />
+                <Perfil arrayPokemon={pokemons} />
+                <Angles arrayPokemon={pokemons} />
+                <Type arrayPokemon={pokemons} />
+                <Stats arrayPokemon={pokemons} />
+                <Pounds arrayPokemon={pokemons}/>
+            </Section>
         </Container>
 
     )

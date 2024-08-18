@@ -10,12 +10,12 @@ export type Pokemon = {
     other: undefined;
     showdown: string;
     front_default: string;
-    id:number;
+    id: number;
 
 }
 
 function Search() {
-    const {name} = useParams()
+    const { name } = useParams()
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [namePokemon, setNamePokemon] = useState('')
     const [filterResult, setFilterResult] = useState<Pokemon[]>([])
@@ -28,6 +28,7 @@ function Search() {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
             const data = await response.json()
             setPokemons(data.results)
+            console.log(data.results)
         }
         fetchApi()
 
@@ -126,13 +127,15 @@ function Search() {
             <InputName type="text" value={namePokemon} onChange={insertName} />
             <Ul>
                 {renderURL.map((item) =>
-                    <Item key={item.id}>
-                        <Link to={`/home/${name}/details/${item.id}`}>
+                    <Link to={`/home/${name}/details/${item.id}`}>
+                        <Item key={item.id}>
+
                             <Img src={item.sprites.other.showdown.front_default} />
                             <Name>{item.name}</Name>
-                        </Link>
-                    </Item>
 
+
+                        </Item>
+                    </Link>
                 )}
             </Ul>
 

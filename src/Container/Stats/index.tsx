@@ -1,7 +1,6 @@
 import { Box } from "../Type/style";
 
 type Map = {
-
     arrayPokemon: [];
     idPokemon: number;
     name: string;
@@ -10,10 +9,9 @@ type Map = {
     stats: [];
     base_stat: number;
 }
+
 function Stats({ arrayPokemon }: Map) {
-
     return (
-
         <Box>
             <h3>Estatisticas</h3>
             <ul>
@@ -38,9 +36,7 @@ function Stats({ arrayPokemon }: Map) {
                 )}
             </ul>
         </Box>
-
     )
-
 }
 
 export default Stats
