@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import Title from "../../components/Title";
 import { BackButton } from "../Welcome";
 import { H } from "./style";
 
@@ -8,7 +7,7 @@ function Header() {
     return (
 
         <H>
-            <Title>Detalhes</Title>
+            <h3>Detalhes</h3>
             <Link to={`/home/${name}`}><BackButton>Voltar</BackButton></Link>
         </H>
 

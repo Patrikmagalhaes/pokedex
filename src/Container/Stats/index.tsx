@@ -1,3 +1,4 @@
+import { Li } from "../../components/Li";
 import { Pokemon } from "../../Details";
 import { Box } from "../Type/style";
 
@@ -14,9 +15,9 @@ function Stats({ arrayPokemon }: StatsProps) {
                 {arrayPokemon.map((item) => (
                     <>
                         {item.stats.map((stat, index) => (
-                            <li key={index}>
+                            <Li key={index}>
                                 <p>{stat.stat.name}: {stat.base_stat}</p>
-                            </li>
+                            </Li>
                         ))}
                     </>
                 ))}

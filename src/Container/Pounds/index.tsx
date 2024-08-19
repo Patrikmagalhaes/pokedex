@@ -1,3 +1,4 @@
+import { Li } from "../../components/Li";
 import { Pokemon } from "../../Details";
 import { Box } from "../Type/style";
 
@@ -16,7 +17,7 @@ function Pounds({ arrayPokemon }: ArrayProps) {
 
                     <ul>
                         <h4>Peso</h4>
-                        <p>KG: {(item.weight / 2.2).toFixed(2)}</p>
+                        <Li>KG: {(item.weight / 2.2).toFixed(2)}</Li>
                     </ul>
 
                 </Box>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Name } from "../../components/Name";
 
 export const Ul = styled.ul`
 display:flex;
@@ -20,12 +21,13 @@ width:180px;
 height:180px;
 `
 export const Img = styled.img`
-// Object-fit:scale-down;
+Object-fit:scale-down;
 max-width:100px;
 width:100%;
 `
-export const Name = styled.h3`
-color:#EC2739;
-text-transform:capitalize;
-padding:8px 0;
+export const NamePokemon = styled(Name)`
+font-size:16px
+
 `
+
+export { Name };

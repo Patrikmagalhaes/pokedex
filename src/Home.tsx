@@ -4,6 +4,9 @@ import Title from "./components/Title"
 import { Container } from "./styles"
 import Search from "./Container/Search"
 import { Name } from "./Container/Search/style"
+import { Label } from "./components/Label"
+import Fire from "./Container/Fire"
+import Water from "./Container/Water"
 
 
 function Home() {
@@ -14,9 +17,11 @@ function Home() {
         <Container>
             <Section>
                 <GlobalStyle />
-                <Title>Bem vindo(a) treinador(a) <br/> <Name>{name}!</Name>  </Title>
-                <p>Qual Pokémon gostaria de estudar hoje?</p>
+                <Title>Bem vindo(a) treinador(a) <br/> <Name>{name}!</Name> </Title>
+                <Label>Qual Pokémon gostaria de estudar hoje?</Label>
                 <Search />
+                <Water/>
+                <Fire/>
             </Section>
         </Container>
 

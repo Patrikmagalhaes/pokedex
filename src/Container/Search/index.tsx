@@ -1,17 +1,13 @@
 import { InputName } from "../Welcome"
 import { useState, useEffect } from "react"
-import { Img, Item, Name, Ul } from "./style";
+import { Img, Item, NamePokemon, Ul } from "./style";
 import { Link, useParams } from "react-router-dom";
 
 type Pokemon = {
     name: string;
     url: string;
     sprites: Sprites;
-  
-
-
     id: number;
-
 }
 
 type Sprites = {
@@ -35,7 +31,7 @@ function Search() {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
             const data = await response.json()
             setPokemons(data.results)
-            console.log(data.results)
+    
         }
         fetchApi()
 
@@ -69,44 +65,55 @@ function Search() {
                 const data = await response.json()
                 arrayPokemon.push(data)
                 setRenderURL(arrayPokemon)
+                console.log(data)
+             
             }
             fetchApi()
         })
-
     }, [filterResult])
 
     useEffect(() => {
-
-
         setFilterResult([
-            
             {
                 name: 'caterpie',
-                url: 'https://pokeapi.co/api/v2/pokemon/10/',
+                url: 'https://pokeapi.co/api/v2/pokemon/6/',
                 sprites: { other: { showdown: { front_default: '' } } },
                 id: 10
+            },
+            {
+                name: 'caterpie',
+                url: 'https://pokeapi.co/api/v2/pokemon/482/',
+                sprites: { other: { showdown: { front_default: '' } } },
+                id: 10
+            },
+            {
+                name: 'caterpie',
+                url: 'https://pokeapi.co/api/v2/pokemon/24/',
+                sprites: { other: { showdown: { front_default: '' } } },
+                id: 10
+            },
+            {
+                name: 'caterpie',
+                url: 'https://pokeapi.co/api/v2/pokemon/15/',
+                sprites: { other: { showdown: { front_default: '' } } },
+                id: 15
             }
       ])
-
     }
         , [])
     return (
         <>
-            <InputName type="text" value={namePokemon} onChange={insertName} />
+            <InputName placeholder="Ex: Pikachu" type="text" value={namePokemon} onChange={insertName} />
             <Ul>
                 {renderURL.map((item) =>
                     <Link to={`/home/${name}/details/${item.id}`}>
                         <Item key={item.id}>
-
                             <Img src={item.sprites.other.showdown.front_default} />
-                            <Name>{item.name}</Name>
-
-
+                            <NamePokemon>{item.name}</NamePokemon>
                         </Item>
                     </Link>
                 )}
             </Ul>
-
         </>
     )
 }

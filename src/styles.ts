@@ -7,10 +7,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body{
-    font-family: monospace, sans-serif;
+    font-family: "Pixelify Sans", sans-serif;
     box-sizing: border-box;
     background-color: #ffefd5;
-   
     }
 
     a{
@@ -26,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 export default GlobalStyle
 
 export const Section = styled.div`
-max-width: 764px;
+  max-width: 764px;
   width: 90%;
   display:flex;
   flex-direction:column;
@@ -43,9 +42,8 @@ max-width: 764px;
 `
 export const Container = styled.div`
   width:100vw;
-
-  
-display:flex;
+  padding-bottom:16px;
+  display:flex;
   flex-direction:column;
   align-items: center;
   justify-content:center;
