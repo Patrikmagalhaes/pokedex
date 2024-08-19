@@ -2,7 +2,7 @@ import { ImgRounded } from "../../components/ImgRounded";
 import { Name } from "../../components/Name";
 import { Pokemon } from "../../Details";
 import { Section } from "../../styles";
-import { Img, Item, NamePokemon } from "../Search/style";
+
 
 
 
