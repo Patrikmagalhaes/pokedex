@@ -16,7 +16,7 @@ function Angles({ arrayPokemon }: ArrayProps) {
     return (
 
         <>
-            {arrayPokemon.map((item) =>
+            {arrayPokemon.length > 0 ? arrayPokemon.map((item) =>
 
                 <BoxCenter>
 
@@ -24,6 +24,14 @@ function Angles({ arrayPokemon }: ArrayProps) {
                     <Img src={item.sprites.other.showdown.back_default} />
 
                 </BoxCenter>
+            ) : (
+                <>
+                    <BoxCenter>
+
+                        <Img src={'/images/loader.gif'} />
+                        <Img src={'/images/loader.gif'} />
+
+                    </BoxCenter></>
             )}
         </>
 

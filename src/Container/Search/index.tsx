@@ -31,7 +31,7 @@ function Search() {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000000')
             const data = await response.json()
             setPokemons(data.results)
-    
+
         }
         fetchApi()
 
@@ -66,7 +66,6 @@ function Search() {
                 arrayPokemon.push(data)
                 setRenderURL(arrayPokemon)
                 console.log(data)
-             
             }
             fetchApi()
         })
@@ -78,19 +77,19 @@ function Search() {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/6/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 10
+                id: 6
             },
             {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/482/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 10
+                id: 482
             },
             {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/24/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 10
+                id: 24
             },
             {
                 name: 'caterpie',
@@ -98,21 +97,41 @@ function Search() {
                 sprites: { other: { showdown: { front_default: '' } } },
                 id: 15
             }
-      ])
+        ])
     }
         , [])
     return (
         <>
             <InputName placeholder="Ex: Pikachu" type="text" value={namePokemon} onChange={insertName} />
             <Ul>
-                {renderURL.map((item) =>
-                    <Link to={`/home/${name}/details/${item.id}`}>
-                        <Item key={item.id}>
-                            <Img src={item.sprites.other.showdown.front_default} />
-                            <NamePokemon>{item.name}</NamePokemon>
-                        </Item>
-                    </Link>
-                )}
+
+                {
+                    renderURL.length > 0 ? renderURL.map((item) =>
+
+                        <Link to={`/home/${name}/details/${item.id}`}>
+                            <Item key={item.id}>
+                                <Img src={item.sprites.other.showdown.front_default} />
+                                <NamePokemon>{item.name}</NamePokemon>
+                            </Item>
+                        </Link>
+                    ) : (<>
+                        <div> <Item>
+                        <Img src={'/images/loader.gif'} />
+                        <NamePokemon>Calma ai...</NamePokemon>
+                    </Item>
+                    </div>
+                    <div> <Item>
+                        <Img src={'/images/loader.gif'} />
+                        <NamePokemon>Calma ai...</NamePokemon>
+                    </Item>
+                    </div>
+                    <div> <Item>
+                        <Img src={'/images/loader.gif'} />
+                        <NamePokemon>Calma ai...</NamePokemon>
+                    </Item>
+                    </div>
+
+                    </>)}
             </Ul>
         </>
     )

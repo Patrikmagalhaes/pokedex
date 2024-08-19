@@ -37,7 +37,7 @@ function Fire() {
             } catch (error) {
                 console.error("Erro ao buscar os dados:", error);
             }
-        };
+        }
 
         fetchTypeData();
     }, []);
@@ -66,15 +66,35 @@ function Fire() {
     return (
         <> <Title>Tipo fogo</Title>
             <Ul>
-               
-                {renderURL.map((item) => (
+
+                {renderURL.length > 0 ? renderURL.map((item) => (
                     <Link to={`/home/${name}/details/${item.id}`} key={item.id}>
                         <Item>
                             <Img src={item.sprites.other.showdown.front_default} alt={item.name} />
                             <NamePokemon>{item.name}</NamePokemon>
                         </Item>
                     </Link>
-                ))}
+                )) : (
+
+                    <>
+
+                        <div> <Item>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
+                        <div> <Item>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
+                        <div> <Item>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
+                    </>
+                )}
             </Ul>
         </>
     );
