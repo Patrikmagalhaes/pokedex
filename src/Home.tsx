@@ -17,8 +17,8 @@ function Home() {
         <Container>
             <Section>
                 <GlobalStyle />
-                <Title>Bem vindo(a) treinador(a) <br/> <Name>{name}!</Name> </Title>
-                <Img src={'/images/pokedex.gif'}/>
+                <Title>Bem vindo(a) treinador(a) <br /> <Name>{name}!</Name> </Title>
+                <Img src={'/images/pokedex.gif'} />
                 <Label>Qual Pokémon gostaria de estudar hoje?</Label>
                 <Search />
                 <Water/>
