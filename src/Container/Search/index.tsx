@@ -1,6 +1,6 @@
 import { InputName } from "../Welcome"
 import { useState, useEffect } from "react"
-import { Img, Item, NamePokemon, Ul } from "./style";
+import { FaceCard, Img, Item, NamePokemon, Ul } from "./style";
 import { Link, useParams } from "react-router-dom";
 
 type Pokemon = {
@@ -8,6 +8,11 @@ type Pokemon = {
     url: string;
     sprites: Sprites;
     id: number;
+    types: Type[]
+
+}
+type Type = {
+    type: { name: string }
 }
 
 type Sprites = {
@@ -77,25 +82,29 @@ function Search() {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/6/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 6
+                id: 6,
+                types: []
             },
             {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/482/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 482
+                id: 482,
+                types: []
             },
             {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/24/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 24
+                id: 24,
+                types: []
             },
             {
                 name: 'caterpie',
                 url: 'https://pokeapi.co/api/v2/pokemon/15/',
                 sprites: { other: { showdown: { front_default: '' } } },
-                id: 15
+                id: 15,
+                types: []
             }
         ])
     }
@@ -110,26 +119,38 @@ function Search() {
 
                         <Link to={`/home/${name}/details/${item.id}`}>
                             <Item key={item.id}>
-                                <Img src={item.sprites.other.showdown.front_default} />
-                                <NamePokemon>{item.name}</NamePokemon>
+                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems:"center" }}>
+                                    <div style={{border: "1px solid #0000002e", width:"100%", display: "flex",  justifyContent: "center", alignItems:"center"}}>
+                                        <FaceCard>
+                                            <Img src={item.sprites.other.showdown.front_default} />
+                                        </FaceCard>
+                                    </div>
+                                    <div style={{width:"100%", overflowX:"hidden"}}>
+                                        <NamePokemon>{item.name}</NamePokemon>
+                                     <p style={{fontSize:"16px", fontWeight:"400"}} >Tipo</p>
+
+                                        <p style={{fontSize:"12px"}}>{item.types[0].type.name} </p>
+                                        <p style={{fontSize:"12px"}}>{item.types[1] && item.types[1].type.name}</p>
+                                    </div>
+                                </div>
                             </Item>
                         </Link>
                     ) : (<>
                         <div> <Item>
-                        <Img src={'/images/loader.gif'} />
-                        <NamePokemon>Calma ai...</NamePokemon>
-                    </Item>
-                    </div>
-                    <div> <Item>
-                        <Img src={'/images/loader.gif'} />
-                        <NamePokemon>Calma ai...</NamePokemon>
-                    </Item>
-                    </div>
-                    <div> <Item>
-                        <Img src={'/images/loader.gif'} />
-                        <NamePokemon>Calma ai...</NamePokemon>
-                    </Item>
-                    </div>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
+                        <div> <Item>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
+                        <div> <Item>
+                            <Img src={'/images/loader.gif'} />
+                            <NamePokemon>Calma ai...</NamePokemon>
+                        </Item>
+                        </div>
 
                     </>)}
             </Ul>

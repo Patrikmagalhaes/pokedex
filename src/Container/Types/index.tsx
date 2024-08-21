@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Img, Item, NamePokemon, Ul } from "../Search/style";
-import styled from "styled-components";
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
+import { FaceCard, Img, Item, Name, NamePokemon, Ul } from "../Search/style"
+import styled from "styled-components"
 
 type Pokemon = {
     name: string;
     url: string;
     sprites: Sprites;
     id: number;
+    types: Type[]
 };
-
+type Type = {
+    type: { name: string }
+}
 type Sprites = {
     other: {
         showdown: {
@@ -24,20 +27,34 @@ type PokemonTypeResponse = {
 
 const ButtonType = styled.button<{ active: boolean }>`
 
-background-color:${({ active }) => (active ? '#eb01016e' : 'transparent')};
-border: 1px solid #bfbfbf;
-width:100px;
-height:100px;
-box-shadow: 2px  2px black;
-       
+background-color: ${({ active }) => (active ? '#eb01016e' : 'white')};
+border:none;
+padding:6px;
+box-shadow: 3px  3px black;
+       display:flex;
+       flex-direction:column;
+       justify-content:end;
+       align-items:center;
+       min-width:80px;
 `
+export const UType = styled(Ul)`
+gap:16px;
+justify-content:space-between;
+`
+
+const types = [
+    { id: 0, url: '/images/water.png', title: "Água", },
+    { id: 1, url: '/images/fire.png', title: "Fogo" },
+    { id: 2, url: '/images/bug.png', title: "Inseto" },
+    { id: 3, url: '/images/poison.png', title: "Venenoso" },
+]
 
 function Types() {
     const { name } = useParams();
     const [pokemons, setPokemons] = useState<{ name: string; url: string }[]>([]);
     const [renderURL, setRenderURL] = useState<Pokemon[]>([]);
-    const [valueBtn, setValueBtn] = useState<number>()
-    const [type, setType] = useState('5')
+    const [valueBtn, setValueBtn] = useState<number>(0)
+    const [type, setType] = useState('11')
     // Obtendo a lista de pokémons do tipo fogo e setando em `pokemons`
     useEffect(() => {
         const fetchTypeData = async () => {
@@ -76,47 +93,66 @@ function Types() {
     const insertValue = (e: number) => {
         setValueBtn(e)
         if (e === 0) {
+            //agua
             setType('11')
         } else if (e === 1) {
+            //fogo
             setType('10')
+        } else if (e === 2) {
+            //inseto
+            setType('7')
+        } else if (e === 3) {
+            //venenoso
+            setType('4')
         }
     }
     return (
 
 
         <>
-            Categorias
+            <Name>   Categorias</Name>
 
-            {
-                [{ id: 0, url: '/images/water.png', title: "Água" },
-                { id: 1, url: '/images/fire.png', title: "Fogo" }, { id: 2, url: '/images/water.png', title: "Água" }].map((item) => (
-                    <div style={{ display: "flex", }}>
-                        <ButtonType
-                            active={item.id === valueBtn}
-                            onClick={() => insertValue(item.id)}
-                        >
+            <UType>
+                {
+                    types.map((item) => (
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <ButtonType
+                                active={item.id === valueBtn}
+                                onClick={() => insertValue(item.id)}
+                            >
 
-
-
-
-                            <img style={{ width: "50%", }} src={item.url} />
-
-                            <p>{item.title}</p>
+                                <div style={{ width: "40px", height: "40px" }}>
+                                    <img style={{ width: "100%", objectFit: "cover" }} src={item.url} />
+                                </div>
+                                <p style={{ paddingTop: "6px" }}>{item.title}</p>
 
 
-                        </ButtonType>
-                    </div>
-                ))
-            }
+                            </ButtonType>
+                        </div>
+                    ))
+                }
+            </UType>
 
             <Ul>
 
                 {renderURL.length > 0 ? renderURL.map((item) => (
                     <Link to={`/home/${name}/details/${item.id}`} key={item.id}>
-                        <Item>
-                            <Img src={item.sprites.other.showdown.front_default} alt={item.name} />
-                            <NamePokemon>{item.name}</NamePokemon>
-                        </Item>
+                          <Item key={item.id}>
+                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems:"center" }}>
+                                    <div style={{border: "1px solid #0000002e", width:"100%", display: "flex",  justifyContent: "center", alignItems:"center"}}>
+                                        <FaceCard>
+                                            <Img src={item.sprites.other.showdown.front_default} />
+                                        </FaceCard>
+                                    </div>
+                                    <div style={{width:"100%", overflowX:"hidden"}}>
+                                        <NamePokemon>{item.name}</NamePokemon>
+                                     <p style={{fontSize:"16px", fontWeight:"400"}} >Tipo</p>
+
+                                        <p style={{fontSize:"12px"}}>{item.types[0].type.name} </p>
+                                        <p style={{fontSize:"12px"}}>{item.types[1] && item.types[1].type.name}</p>
+                                    </div>
+                                </div>
+                            </Item>
                     </Link>
                 )) : (
 

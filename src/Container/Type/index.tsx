@@ -16,7 +16,8 @@ function Type({ arrayPokemon }: Map) {
                    <>
                     <ul>
                        <h3>Tipo</h3>
-                        <Li>{item.types[0].type.name}</Li>
+                        <Li>{item.types[0].type.name} </Li>
+                        <Li>{item.types[1] && item.types[1].type.name}</Li>
                     </ul>
                    </>
                 )}
