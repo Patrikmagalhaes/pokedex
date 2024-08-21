@@ -24,8 +24,12 @@ type PokemonTypeResponse = {
 
 const ButtonType = styled.button<{ active: boolean }>`
 
-background-color:${({ active }) => (active ? 'red' : 'blue')}
-
+background-color:${({ active }) => (active ? '#eb01016e' : 'transparent')};
+border: 1px solid #bfbfbf;
+width:100px;
+height:100px;
+box-shadow: 2px  2px black;
+       
 `
 
 function Types() {
@@ -33,11 +37,12 @@ function Types() {
     const [pokemons, setPokemons] = useState<{ name: string; url: string }[]>([]);
     const [renderURL, setRenderURL] = useState<Pokemon[]>([]);
     const [valueBtn, setValueBtn] = useState<number>()
+    const [type, setType] = useState('5')
     // Obtendo a lista de pokémons do tipo fogo e setando em `pokemons`
     useEffect(() => {
         const fetchTypeData = async () => {
             try {
-                const response = await fetch('https://pokeapi.co/api/v2/type/10/');
+                const response = await fetch(`https://pokeapi.co/api/v2/type/${type}/`);
                 const data: PokemonTypeResponse = await response.json();
                 setPokemons(data.pokemon.map((p) => p.pokemon)); // extraindo corretamente o array `pokemon`
             } catch (error) {
@@ -46,7 +51,7 @@ function Types() {
         }
 
         fetchTypeData();
-    }, []);
+    }, [type]);
 
     // Obtendo detalhes dos pokémons e setando em `renderURL`
     useEffect(() => {
@@ -70,18 +75,40 @@ function Types() {
     }, [pokemons]);
     const insertValue = (e: number) => {
         setValueBtn(e)
+        if (e === 0) {
+            setType('11')
+        } else if (e === 1) {
+            setType('10')
+        }
     }
     return (
-        <> {
-            [{ id: 0, url: '/images/water.png' }, { id: 1, url: './' }, { id: 2, url: './' }].map((item) => (
-                <ButtonType
-                    active={item.id === valueBtn}
-                    onClick={() => insertValue(item.id)}
-                >
-                   <img src={item.url} />
-                </ButtonType>
-            ))
-        }
+
+
+        <>
+            Categorias
+
+            {
+                [{ id: 0, url: '/images/water.png', title: "Água" },
+                { id: 1, url: '/images/fire.png', title: "Fogo" }, { id: 2, url: '/images/water.png', title: "Água" }].map((item) => (
+                    <div style={{ display: "flex", }}>
+                        <ButtonType
+                            active={item.id === valueBtn}
+                            onClick={() => insertValue(item.id)}
+                        >
+
+
+
+
+                            <img style={{ width: "50%", }} src={item.url} />
+
+                            <p>{item.title}</p>
+
+
+                        </ButtonType>
+                    </div>
+                ))
+            }
+
             <Ul>
 
                 {renderURL.length > 0 ? renderURL.map((item) => (

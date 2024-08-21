@@ -9,6 +9,7 @@ import Fire from "./Container/Fire"
 import Water from "./Container/Water"
 
 
+
 function Home() {
     const { name } = useParams()
 
@@ -21,8 +22,9 @@ function Home() {
                 <Img src={'/images/pokedex.gif'} />
                 <Label>Qual Pokémon gostaria de estudar hoje?</Label>
                 <Search />
-                <Water/>
-                <Fire/>
+                
+                <Water />
+                <Fire />
             </Section>
         </Container>
 
