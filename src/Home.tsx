@@ -7,6 +7,7 @@ import {  Name } from "./Container/Search/style"
 import { Label } from "./components/Label"
 import Types from "./Container/Types"
 
+
 function Home() {
     const { name } = useParams()
 

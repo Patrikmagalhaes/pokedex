@@ -23,13 +23,14 @@ function Perfil({ arrayPokemon }: ArrayProps) {
                 </Section>
 
 
-            ) : (<>
-                <Section>
-                    <ImgRounded style={{  width: "200px" }}  src={'/images/loader.gif'}/>
-                    <Name>Calma ai...</Name>
-                </Section>
-                
-            </>)}
+            ) : (
+                <>
+                    <Section>
+                        <ImgRounded style={{ width: "200px" }} src={'/images/loader.gif'} />
+                        <Name>Calma ai...</Name>
+                    </Section>
+                </>
+            )}
         </>
 
 

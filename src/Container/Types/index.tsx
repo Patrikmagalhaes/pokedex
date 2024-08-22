@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
-import { FaceCard, Img, Item, Name, NamePokemon, Ul } from "../Search/style"
+import { FaceCard, Img, Name, NamePokemon, Ul } from "../Search/style"
 import styled from "styled-components"
+import { Card } from "../../components/Card";
+import LoadingCard from "../LoadingCard";
 
 type Pokemon = {
     name: string;
@@ -55,7 +57,7 @@ function Types() {
     const [renderURL, setRenderURL] = useState<Pokemon[]>([]);
     const [valueBtn, setValueBtn] = useState<number>(0)
     const [type, setType] = useState('11')
-    // Obtendo a lista de pokémons do tipo fogo e setando em `pokemons`
+
     useEffect(() => {
         const fetchTypeData = async () => {
             try {
@@ -107,11 +109,8 @@ function Types() {
         }
     }
     return (
-
-
         <>
-            <Name>   Categorias</Name>
-
+            <Name>Categorias</Name>
             <UType>
                 {
                     types.map((item) => (
@@ -133,49 +132,35 @@ function Types() {
                 }
             </UType>
 
-            <Ul>
 
-                {renderURL.length > 0 ? renderURL.map((item) => (
-                    <Link to={`/home/${name}/details/${item.id}`} key={item.id}>
-                          <Item key={item.id}>
-                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems:"center" }}>
-                                    <div style={{border: "1px solid #0000002e", width:"100%", display: "flex",  justifyContent: "center", alignItems:"center"}}>
+
+            {renderURL.length === 0 ? <Ul><a><LoadingCard /></a></Ul> : (
+
+                <Ul>
+                    {renderURL.map((item) => (
+                        <Link  to={`/home/${name}/details/${item.id}`} key={item.id}>
+                            <Card key={item.id}>
+                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems: "center" }}>
+                                    <div style={{ border: "1px solid #0000002e", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                         <FaceCard>
-                                            <Img src={item.sprites.other.showdown.front_default} />
+                                      <Img src={item.sprites.other.showdown.front_default } />
+                                        
                                         </FaceCard>
                                     </div>
-                                    <div style={{width:"100%", overflowX:"hidden"}}>
+                                    <div style={{ width: "100%", overflowX: "hidden" }}>
                                         <NamePokemon>{item.name}</NamePokemon>
-                                     <p style={{fontSize:"16px", fontWeight:"400"}} >Tipo</p>
+                                        <p style={{ fontSize: "16px", fontWeight: "400" }} >Tipo</p>
 
-                                        <p style={{fontSize:"12px"}}>{item.types[0].type.name} </p>
-                                        <p style={{fontSize:"12px"}}>{item.types[1] && item.types[1].type.name}</p>
+                                        { <p style={{ fontSize: "12px" }}>{item.types[0].type.name} </p> }
+                                        { <p style={{ fontSize: "12px" }}>{item.types[1] && item.types[1].type.name}</p> }
                                     </div>
                                 </div>
-                            </Item>
-                    </Link>
-                )) : (
+                            </Card>
+                        </Link>
+                    ))}
+                </Ul>
+            )}
 
-                    <>
-
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
-                    </>
-                )}
-            </Ul>
         </>
     );
 }

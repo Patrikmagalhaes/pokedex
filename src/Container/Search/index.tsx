@@ -1,7 +1,9 @@
 import { InputName } from "../Welcome"
 import { useState, useEffect } from "react"
-import { FaceCard, Img, Item, NamePokemon, Ul } from "./style";
+import { FaceCard, Img, NamePokemon, Ul } from "./style";
 import { Link, useParams } from "react-router-dom";
+import { Card } from "../../components/Card";
+import LoadingCard from "../LoadingCard";
 
 type Pokemon = {
     name: string;
@@ -112,48 +114,34 @@ function Search() {
     return (
         <>
             <InputName placeholder="Ex: Pikachu" type="text" value={namePokemon} onChange={insertName} />
-            <Ul>
 
-                {
-                    renderURL.length > 0 ? renderURL.map((item) =>
 
-                        <Link to={`/home/${name}/details/${item.id}`}>
-                            <Item key={item.id}>
-                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems:"center" }}>
-                                    <div style={{border: "1px solid #0000002e", width:"100%", display: "flex",  justifyContent: "center", alignItems:"center"}}>
+            {renderURL.length === 0 ? <LoadingCard />: (
+
+                <Ul>
+                    {renderURL.map((item) => (
+                        <Link to={`/home/${name}/details/${item.id}`} key={item.id}>
+                            <Card key={item.id}>
+                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems: "center" }}>
+                                    <div style={{ border: "1px solid #0000002e", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                         <FaceCard>
                                             <Img src={item.sprites.other.showdown.front_default} />
                                         </FaceCard>
                                     </div>
-                                    <div style={{width:"100%", overflowX:"hidden"}}>
+                                    <div style={{ width: "100%", overflowX: "hidden" }}>
                                         <NamePokemon>{item.name}</NamePokemon>
-                                     <p style={{fontSize:"16px", fontWeight:"400"}} >Tipo</p>
+                                        <p style={{ fontSize: "16px", fontWeight: "400" }} >Tipo</p>
 
-                                        <p style={{fontSize:"12px"}}>{item.types[0].type.name} </p>
-                                        <p style={{fontSize:"12px"}}>{item.types[1] && item.types[1].type.name}</p>
+                                        <p style={{ fontSize: "12px" }}>{item.types[0].type.name} </p>
+                                        <p style={{ fontSize: "12px" }}>{item.types[1] && item.types[1].type.name}</p>
                                     </div>
                                 </div>
-                            </Item>
+                            </Card>
                         </Link>
-                    ) : (<>
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
-                        <div> <Item>
-                            <Img src={'/images/loader.gif'} />
-                            <NamePokemon>Calma ai...</NamePokemon>
-                        </Item>
-                        </div>
+                    ))}
+                </Ul>
+            )}
 
-                    </>)}
-            </Ul>
         </>
     )
 }
