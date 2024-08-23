@@ -7,8 +7,7 @@ import Stats from "./Container/Stats"
 import Perfil from "./Container/Perfil"
 import Angles from "./Container/Angles"
 import Pounds from "./Container/Pounds"
-// import Ia from "./Container/ia"
-// import Ia from "./Container/ia"
+import Ia from "./Container/ia"
 
 type Stat = {
     base_stat: number;
@@ -54,15 +53,14 @@ function Details() {
 
     const { id } = useParams()
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
-    const [nameP, setNamePokemon] = useState<string>()
-    // const [namePokemon, setName] = useState()
+    const [nameP, setNamePokemon] = useState<string>('')
+ 
     useEffect(() => {
         const fetchApi = async () => {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const data = await response.json()
             setPokemons([data])
             setNamePokemon(data.name)
-            console.log("nome no use estate AAAAAAAAAAAAAAAAAAAAAAAAAAAA" + nameP)
         }
         fetchApi()
 
@@ -74,7 +72,7 @@ function Details() {
             <Section>
                 <Header />
                 <Perfil arrayPokemon={pokemons} />
-                {/* <Ia pokemonName={nameP} /> */}
+                <Ia pokemonName={nameP} />
                 <Angles arrayPokemon={pokemons} />
                 <Type arrayPokemon={pokemons} />
                 <Stats arrayPokemon={pokemons} />
