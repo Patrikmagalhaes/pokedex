@@ -20,16 +20,21 @@ function Ia({ pokemonName }: Type) {
 
         const fetchApi = async () => {
             const API_KEY = 'AIzaSyC-iDwzRLjuzq7EeH6c2HTjOVzLUXRIWTo'
-          
             const genAI = new GoogleGenerativeAI(API_KEY);
-            const prompt = `Crie uma descrição resumida do pokemon ${pokemonName}`
-            console.log(pokemonName)
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            const text = response.text();
-            console.log(text);
-            setDescription(text)
+
+            const prompt = `Crie uma descrição resumida do pokemon ${pokemonName}`
+
+            const result = await model.generateContentStream(prompt);
+            let fullText = ''
+
+            for await (const chunk of result.stream) {
+
+                const chunkText = chunk.text();
+                fullText = fullText += chunkText
+                setDescription(fullText)
+            }
+
         }
         if (pokemonName) {
             fetchApi()
@@ -42,9 +47,8 @@ function Ia({ pokemonName }: Type) {
 
     return (
         <Description>
-            <p >{description ? description: "Gerando Descrição..." }</p>
+            <p >{description != undefined ? description && description : "Gerando Descrição..."}</p>
         </Description>
-
     );
 
 

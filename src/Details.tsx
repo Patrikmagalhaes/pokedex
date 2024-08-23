@@ -44,13 +44,7 @@ export type Pokemon = {
     weight: number;
 };
 
-
-
-
-
-
 function Details() {
-
     const { id } = useParams()
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [nameP, setNamePokemon] = useState<string>('')
@@ -63,10 +57,9 @@ function Details() {
             setNamePokemon(data.name)
         }
         fetchApi()
-
     }, [])
-    return (
 
+    return (
         <Container>
             <GlobalStyle />
             <Section>
@@ -79,11 +72,7 @@ function Details() {
                 <Pounds arrayPokemon={pokemons} />
             </Section>
         </Container>
-
     )
-
-
 }
 
 export default Details
-
