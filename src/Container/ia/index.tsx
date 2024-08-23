@@ -1,12 +1,17 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { Box } from "../Type/style";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 
 type Type = {
     pokemonName: string
 }
 
+const Description = styled(Box)`
+text-transform: none;
+font-family: monospace,sans-serif;
+`
 function Ia({ pokemonName }: Type) {
 
     const [description, setDescription] = useState<string>()
@@ -15,7 +20,7 @@ function Ia({ pokemonName }: Type) {
 
         const fetchApi = async () => {
             const API_KEY = 'AIzaSyC-iDwzRLjuzq7EeH6c2HTjOVzLUXRIWTo'
-            // Access your API key as an environment variable (see "Set up your API key" above)
+          
             const genAI = new GoogleGenerativeAI(API_KEY);
             const prompt = `Crie uma descrição resumida do pokemon ${pokemonName}`
             console.log(pokemonName)
@@ -36,9 +41,9 @@ function Ia({ pokemonName }: Type) {
 
 
     return (
-        <Box>
+        <Description>
             <p >{description ? description: "Gerando Descrição..." }</p>
-        </Box>
+        </Description>
 
     );
 
