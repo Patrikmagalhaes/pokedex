@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     body{
     font-family: "Pixelify Sans", sans-serif;
     box-sizing: border-box;
-    background-color: #ffefd5;
     }
 
     a{

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
-import { FaceCard, Img, Name, NamePokemon, Ul } from "../Search/style"
+import { FaceCard, Img, NamePokemon, Ul } from "../Search/style"
 import styled from "styled-components"
 import { Card } from "../../components/Card";
 import LoadingCard from "../LoadingCard";
@@ -29,18 +29,19 @@ type PokemonTypeResponse = {
 
 const ButtonType = styled.button<{ active: boolean }>`
 
-background-color: ${({ active }) => (active ? '#eb01016e' : 'white')};
+background-color: ${({ active }) => (active ? 'yellow' : 'white')};
 border:none;
-padding:6px;
-box-shadow: 3px  3px black;
+
+box-shadow:12.5px 12.5px 10px rgba(0, 0, 0, 0.07),100px 100px 80px rgba(0, 0, 0, 0.035);
        display:flex;
        flex-direction:column;
        justify-content:end;
        align-items:center;
-       min-width:80px;
+       min-width:70px;
 `
 export const UType = styled(Ul)`
-gap:16px;
+margin: 0 8px;
+padding:12px 0;
 justify-content:space-between;
 `
 
@@ -109,8 +110,10 @@ function Types() {
         }
     }
     return (
-        <>
-            <Name>Categorias</Name>
+        <div style={{ borderRadius: "20px", width: "100%", boxShadow: "12.5px 12.5px 10px rgba(0, 0, 0, 0.07),100px 100px 80px rgba(0, 0, 0, 0.035)", border: "1px solid #E5E7EB", marginTop: "20px", paddingBottom:"12px" }}>
+     
+                <h3 style={{ fontSize:"22px",textAlign: "center", padding:"22px 0"}}>Categorias</h3>
+           
             <UType>
                 {
                     types.map((item) => (
@@ -120,7 +123,7 @@ function Types() {
                                 onClick={() => insertValue(item.id)}
                             >
 
-                                <div style={{ width: "40px", height: "40px" }}>
+                                <div style={{ width: "30px", height: "30px" }}>
                                     <img style={{ width: "100%", objectFit: "cover" }} src={item.url} />
                                 </div>
                                 <p style={{ paddingTop: "6px" }}>{item.title}</p>
@@ -132,27 +135,25 @@ function Types() {
                 }
             </UType>
 
-
-
             {renderURL.length === 0 ? <Ul><a><LoadingCard /></a></Ul> : (
 
                 <Ul>
                     {renderURL.map((item) => (
-                        <Link  to={`/home/${name}/details/${item.id}`} key={item.id}>
+                        <Link to={`/home/${name}/details/${item.id}`} key={item.id}>
                             <Card key={item.id}>
                                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "end", width: "100%", alignItems: "center" }}>
                                     <div style={{ border: "1px solid #0000002e", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                         <FaceCard>
-                                      <Img src={item.sprites.other.showdown.front_default } />
-                                        
+                                            <Img src={item.sprites.other.showdown.front_default} />
+
                                         </FaceCard>
                                     </div>
                                     <div style={{ width: "100%", overflowX: "hidden" }}>
                                         <NamePokemon>{item.name}</NamePokemon>
                                         <p style={{ fontSize: "16px", fontWeight: "400" }} >Tipo</p>
 
-                                        { <p style={{ fontSize: "12px" }}>{item.types[0].type.name} </p> }
-                                        { <p style={{ fontSize: "12px" }}>{item.types[1] && item.types[1].type.name}</p> }
+                                        {<p style={{ fontSize: "12px" }}>{item.types[0].type.name} </p>}
+                                        {<p style={{ fontSize: "12px" }}>{item.types[1] && item.types[1].type.name}</p>}
                                     </div>
                                 </div>
                             </Card>
@@ -160,8 +161,7 @@ function Types() {
                     ))}
                 </Ul>
             )}
-
-        </>
+        </div>
     );
 }
 

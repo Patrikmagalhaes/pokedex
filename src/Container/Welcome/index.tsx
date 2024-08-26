@@ -8,6 +8,7 @@ import { Container, Section } from '../../styles'
 export const InputName = styled.input`
   padding:16px;
   width:50%;
+ background-color:yellow;
   box-shadow: 2px  2px black;
 `
 

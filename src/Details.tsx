@@ -9,6 +9,7 @@ import Angles from "./Container/Angles"
 import Pounds from "./Container/Pounds"
 import Ia from "./Container/ia"
 
+
 type Stat = {
     base_stat: number;
     stat: {
@@ -48,7 +49,7 @@ function Details() {
     const { id } = useParams()
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [nameP, setNamePokemon] = useState<string>('')
- 
+
     useEffect(() => {
         const fetchApi = async () => {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -58,7 +59,7 @@ function Details() {
         }
         fetchApi()
     }, [])
-
+  
     return (
         <Container>
             <GlobalStyle />

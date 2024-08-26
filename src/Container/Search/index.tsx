@@ -112,11 +112,17 @@ function Search() {
     }
         , [])
     return (
-        <>
-            <InputName placeholder="Ex: Pikachu" type="text" value={namePokemon} onChange={insertName} />
+        <div style={{ borderRadius:"20px",width: "100%", boxShadow: "12.5px 12.5px 10px rgba(0, 0, 0, 0.07),100px 100px 80px rgba(0, 0, 0, 0.035)", border: "1px solid #E5E7EB",paddingTop:"20px", marginTop:"20px",padding:"22px 0" }}>
+            <div>
+                <h3 style={{textAlign:"center", fontSize:"22px"}}>Busca por nome</h3>
+            </div>
+            <div style={{display:"flex", flexDirection:"column", alignItems:"center", padding:"24px 0"}}>
+                <img src={'/images/pokedex.gif'} />
+                <InputName placeholder="Ex: Pikachu" type="text" value={namePokemon} onChange={insertName} />
+            </div>
 
 
-            {renderURL.length === 0 ? <LoadingCard />: (
+            {renderURL.length === 0 ? <LoadingCard /> : (
 
                 <Ul>
                     {renderURL.map((item) => (
@@ -141,8 +147,7 @@ function Search() {
                     ))}
                 </Ul>
             )}
-
-        </>
+        </div>
     )
 }
 

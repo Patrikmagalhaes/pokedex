@@ -3,10 +3,9 @@ import { Name } from "../../components/Name";
 
 export const Ul = styled.ul`
 display:flex;
-gap:36px;
 overflow-x:auto;
-padding: 20px ;
-width:100%;
+scroll-behavior: smooth;
+
 `
 
 export const FaceCard = styled.div`
