@@ -21,7 +21,10 @@ function Ia({ pokemonName }: Type) {
         const fetchApi = async () => {
             const API_KEY = 'AIzaSyC-iDwzRLjuzq7EeH6c2HTjOVzLUXRIWTo'
             const genAI = new GoogleGenerativeAI(API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({
+                model: "gemini-1.5-flash",
+                systemInstruction: "Você é um assistente, especializado em ajudar os usuários(as) da Pokédex a encontrar informações sobre Pokémon e outros assuntos relacionados ao universo Pokémon. Responda em primeira pessoa de forma amigável e precisa, sempre disposto a ajudar com entusiasmo."
+            });
 
             const prompt = `Crie uma descrição resumida do pokemon ${pokemonName}`
 
